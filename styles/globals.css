@@ -1,26 +1,117 @@
-@import "tailwindcss";
+/* Import Tailwind CSS base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Base styles for the entire application */
+@layer base {
+  html {
+    @apply scroll-smooth; /* Smooth scrolling for anchor links */
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  body {
+    @apply font-poppins text-gray-900 bg-gray-100 antialiased; /* Poppins font, light gray background */
+    margin: 0;
+    padding: 0;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-gray-800; /* Bold headings with dark gray color */
+  }
+
+  a {
+    @apply transition duration-300; /* Smooth transitions for links */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom component styles */
+@layer components {
+  /* Button styles for consistent CTAs */
+  .btn {
+    @apply px-6 py-3 rounded-full font-semibold text-white shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+
+  .btn-success {
+    @apply bg-green-500 hover:bg-green-600;
+  }
+
+  /* Card container for coupons */
+  .card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300;
+  }
+
+  /* Input and textarea styles */
+  .input-field {
+    @apply w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200;
+  }
+
+  .textarea-field {
+    @apply w-full p-3 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y min-h-[100px];
+  }
+}
+
+/* Custom utilities for advanced graphics and animations */
+@layer utilities {
+  /* Gradient background for hero section */
+  .gradient-hero {
+    background: linear-gradient(135deg, #3B82F6, #10B981);
+  }
+
+  /* Subtle hover effect for interactive elements */
+  .hover-lift {
+    @apply hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  /* Fade-in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl; /* Smaller headings on mobile */
+  }
+
+  .btn {
+    @apply px-4 py-2 text-sm; /* Smaller buttons on mobile */
+  }
+
+  .card {
+    @apply w-full; /* Full-width cards on mobile */
+  }
+}
+
+/* Accessibility enhancements */
+:focus {
+  @apply outline-none ring-2 ring-blue-400 ring-opacity-75;
+}
+
+/* Custom scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 rounded-full hover:bg-blue-600;
 }
