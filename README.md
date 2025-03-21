@@ -1,6 +1,8 @@
 
 $ git clone https://github.com/awsgaurav00/Coupes-code.git
 
+MongoDB install
+
 create the variable env 
 
 then 
